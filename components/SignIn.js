@@ -2,14 +2,40 @@ import React, { useState } from "react";
 import { Button, Modal } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { handleCancel2 } from "../reducers/signin";
+import { login } from "../reducers/user";
+import { useRouter } from 'next/router';
+
 
 function SignIn() {
   const signin = useSelector((state) => state.signin.value);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const [signInUsername, setSignInUsername] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
+  const handleConnections = () => {
+    dispatch(handleCancel2());
+    dispatch(handleConnection());
+  };
 
+  
+  const handleConnection = () => {
+    fetch('http://localhost:3000/users/signin', {
+      method: 'POST',
+      body: JSON.stringify({ username: signInUsername, password: signInPassword }),
+    }).then(response => response.json())
+      .then(data => {
+        if (data.result) {
+          dispatch(login({ username: signInUsername, token: data.token }));
+          setSignInUsername('');
+          setSignInPassword('');
+          router.push('/main');
+          
+        }
+      });
+  };
+ 
+  
   return (
     <div>
       <Modal
@@ -17,7 +43,7 @@ function SignIn() {
         open={signin}
         onCancel={() => dispatch(handleCancel2())}
         footer={
-          <Button key="submitIn" onClick={() => dispatch(handleCancel2())}>
+          <Button key="submitIn" onClick={() => dispatch(handleConnections())}>
             Sign In
           </Button>
         }

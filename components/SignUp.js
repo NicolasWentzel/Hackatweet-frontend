@@ -2,14 +2,42 @@ import React, { useState } from "react";
 import { Button, Modal } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { handleCancel } from "../reducers/signup";
+import { login } from "../reducers/user";
+import { useRouter } from 'next/router';
 
 function SignUp() {
   const signup = useSelector((state) => state.signup.value);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const [signUpFirstname, setSignUpFirstname] = useState("");
   const [signUpUsername, setSignUpUsername] = useState("");
   const [signUpPassword, setSignUpPassword] = useState("");
+  const handleRegisters = () => {
+    dispatch(handleCancel());
+    dispatch(handleRegister());
+  };
+
+  
+  
+  const handleRegister = () => {
+    fetch('http://localhost:3000/users/signup', {
+      method: 'POST',
+      body: JSON.stringify({ username: signUpUsername, firstname: signUpFirstname, password: signUpPassword }),
+    }).then(response => response.json())
+      .then(data => {
+        if (data.result) {
+          dispatch(login({ username: signUpUsername, firstname: signUpFirstname, token: data.token }));
+          setSignUpUsername('');
+          setSignUpFirstname('');
+          setSignUpPassword('');
+          router.push('/main');
+          
+        }
+      });
+  };
+ 
+  
 
   return (
     <div>
@@ -18,7 +46,7 @@ function SignUp() {
         open={signup}
         onCancel={() => dispatch(handleCancel())}
         footer={
-          <Button key="submitUp" onClick={() => dispatch(handleCancel())}>
+          <Button key="submitUp" onClick={() => dispatch(handleRegisters())}>
             Sign Up
           </Button>
         }
