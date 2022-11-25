@@ -1,15 +1,24 @@
-.main {
+
+.container {
+  height: 100vh;
+  background-image: url("../public/background.png");
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 4rem 0;
+  justify-content: flex-end;
+
 }
+.main{
+  padding: 15px;
+  height: 100vh;
+  background-color: #161d28;
+  width: 60%;
+  color:#fff;
+}
+
 
 .title {
   line-height: 1.15;
   font-size: 4rem;
+  font-family: "Mont-Heavy", sans-serif;
 }
 
 .title a {
@@ -19,4 +28,27 @@
 
 .title a:hover, .title a:focus, .title a:active {
   text-decoration: underline;
+}
+.btn, .btnbis{
+background-color: #0070f3;
+height: 35px;
+width: 200px;
+border-radius: 50px;
+}
+.btnbis {
+  background-color: black;
+ 
+}
+.logo {
+background-color: transparent;
+margin-bottom: 4rem;
+width: 75px;
+}
+.titlebis {
+  font-family: "Mont-Heavy", sans-serif;
+  font-size: 2rem;
+}
+.p {
+  font-family: "Mont-Heavy", sans-serif;
+  font-size: 1rem;
 }

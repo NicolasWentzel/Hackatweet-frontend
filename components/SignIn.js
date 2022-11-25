@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { handleCancel2 } from "../reducers/signin";
 import { login } from "../reducers/user";
 import { useRouter } from 'next/router';
+import { styles } from "../styles/Modal.module.css";
 
 
 function SignIn() {
@@ -40,6 +41,9 @@ function SignIn() {
     <div>
       <Modal
         title="Connect to Hackatweet"
+        bodyStyle={{
+          backgroundColor: 'black'
+      }}
         open={signin}
         onCancel={() => dispatch(handleCancel2())}
         footer={

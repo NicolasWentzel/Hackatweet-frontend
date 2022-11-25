@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { handleCancel } from "../reducers/signup";
 import { login } from "../reducers/user";
 import { useRouter } from "next/router";
+import { styles } from "../styles/Modal.module.css";
+
 
 function SignUp() {
   const signup = useSelector((state) => state.signup.value);
@@ -48,6 +50,10 @@ function SignUp() {
       <Modal
         title="Create your Hackatweet account"
         open={signup}
+        bodyStyle={{
+          backgroundColor: 'black'
+      }}
+      
         onCancel={() => dispatch(handleCancel())}
         footer={
           <Button key="submitUp" onClick={() => handleSignUp()}>
@@ -55,8 +61,12 @@ function SignUp() {
           </Button>
         }
       >
+
+        <div>
         <p>
+          
           <input
+          
             type="text"
             placeholder="Firstname"
             id="signUpFirstname"
@@ -82,8 +92,17 @@ function SignUp() {
             value={signUpPassword}
           />
         </p>
+
+        </div>
+
+
+
+
       </Modal>
+    
+
     </div>
+
   );
 }
 
