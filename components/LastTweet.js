@@ -1,30 +1,26 @@
 import styles from "../styles/lasttweet.module.css";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 function LastTweet() {
   const [lastTweet, setLastTweet] = useState("");
+  const user = useSelector((state) => state.user.value);
 
   const newTweet = () => {
-    fetch("http://localhost:3000/users/tweet", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        // firstname: ,
-        // username: ,
-        // time: Date(),
-        // content: lastTweet,
-        // hashtag: ,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.result) {
-          dispatch(login({ username: signUpUsername, token: data.token }));
-          setSignUpUsername("");
-          setSignUpPassword("");
-          setIsModalVisible(false);
-        }
-      });
+    fetch(
+      "http://localhost:3000/tweets",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstname: user.firstname,
+          username: user.username,
+          time: Date(),
+          content: lastTweet,
+        }),
+      },
+      setLastTweet("")
+    );
   };
 
   return (
@@ -42,7 +38,9 @@ function LastTweet() {
         </div>
         <div className={styles.postTweet}>
           <span>Compteur 0/280</span>
-          <button className={styles.tweetButton}>Tweet</button>
+          <button className={styles.tweetButton} onClick={() => newTweet()}>
+            Tweet
+          </button>
         </div>
       </div>
     </div>
