@@ -3,7 +3,7 @@ import { Button, Modal } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { handleCancel } from "../reducers/signup";
 import { login } from "../reducers/user";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 function SignUp() {
   const signup = useSelector((state) => state.signup.value);
@@ -13,31 +13,35 @@ function SignUp() {
   const [signUpFirstname, setSignUpFirstname] = useState("");
   const [signUpUsername, setSignUpUsername] = useState("");
   const [signUpPassword, setSignUpPassword] = useState("");
-  const handleRegisters = () => {
-    dispatch(handleCancel());
-    dispatch(handleRegister());
-  };
 
-  
-  
-  const handleRegister = () => {
-    fetch('http://localhost:3000/users/signup', {
-      method: 'POST',
-      body: JSON.stringify({ username: signUpUsername, firstname: signUpFirstname, password: signUpPassword }),
-    }).then(response => response.json())
-      .then(data => {
+  const handleSignUp = () => {
+    fetch("http://localhost:3000/users/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstname: signUpFirstname,
+        username: signUpUsername,
+        password: signUpPassword,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
         if (data.result) {
-          dispatch(login({ username: signUpUsername, firstname: signUpFirstname, token: data.token }));
-          setSignUpUsername('');
-          setSignUpFirstname('');
-          setSignUpPassword('');
-          router.push('/main');
-          
+          dispatch(
+            login({
+              firstname: signUpFirstname,
+              username: signUpUsername,
+              token: data.token,
+            })
+          );
+          router.push("/main");
         }
+        setSignUpUsername("");
+        setSignUpFirstname("");
+        setSignUpPassword("");
       });
   };
- 
-  
 
   return (
     <div>
@@ -46,7 +50,7 @@ function SignUp() {
         open={signup}
         onCancel={() => dispatch(handleCancel())}
         footer={
-          <Button key="submitUp" onClick={() => dispatch(handleRegisters())}>
+          <Button key="submitUp" onClick={() => handleSignUp()}>
             Sign Up
           </Button>
         }

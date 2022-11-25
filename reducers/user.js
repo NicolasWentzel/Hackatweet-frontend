@@ -14,12 +14,12 @@ export const usersSlice = createSlice({
     },
     logout: (state) => {
       state.value.token = null;
-      state.value.username = null;},
+      state.value.username = null;
+    },
 
     addUserToStore: (state, action) => {
       state.value.push(action.payload);
     },
-    
   },
 });
 
