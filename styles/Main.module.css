@@ -1,57 +1,39 @@
 .mainContainer {
-  background-color: rgb(34, 54, 94);
+  background-color: #002237;
   height: 100vh;
   display: flex;
+  color: white;
 }
 
 .leftContainer {
   border: solid red 1px;
   width: 20vw;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
 }
 
 .logoButton {
+  border: solid red 1px;
 }
 
 .userName {
+  border: solid red 1px;
 }
 
 .logoutButton {
+  border: solid red 1px;
 }
 
 .middleConainter {
   border: solid red 1px;
   width: 50vw;
-}
-
-.homeContainer {
-}
-
-.homeTitle {
-}
-
-.inputContainer {
-}
-
-.postTweet {
-}
-
-.tweetButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .tweetContainer {
-}
-
-.userLogo {
-  color: black;
-}
-
-.texteTweet {
-}
-
-.heartButton {
-}
-
-.deleteButton {
 }
 
 .rightConainter {
