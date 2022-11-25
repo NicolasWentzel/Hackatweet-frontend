@@ -1,9 +1,7 @@
 import styles from "../styles/tweet.module.css";
 import Image from "next/image";
 
-import React, { useState } from "react";
-
-function Tweet() {
+function Tweet(props) {
   return (
     <div>
       <Image
@@ -13,17 +11,13 @@ function Tweet() {
         height={40}
         className={styles.userLogo}
       />
-      <span> Firstname </span>
-      <span> Username</span>
-      <span> Timer </span>
-      <div class={styles.texteTweet}>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-          unde vel magni possimus libero, alias suscipit nobis officia
-          accusantium.
-        </p>
-        <span class={styles.heart}> ❤️ </span>
-        <span class={styles.deleteButton}> 🗑 </span>
+      <span> {props.firstname} </span>
+      <span> {props.username}</span>
+      <span> {props.time} </span>
+      <div className={styles.texteTweet}>
+        <p>{props.content}</p>
+        <span className={styles.heart}> ❤️ </span>
+        <span className={styles.deleteButton}> 🗑 </span>
       </div>
     </div>
   );

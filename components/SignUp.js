@@ -28,7 +28,7 @@ function SignUp() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log("data sign up : ", data);
         if (data.result) {
           dispatch(
             login({
