@@ -1,0 +1,60 @@
+.mainContainer {
+  background-color: rgb(34, 54, 94);
+  height: 100vh;
+  display: flex;
+}
+
+.leftContainer {
+  border: solid red 1px;
+  width: 20vw;
+}
+
+.logoButton {
+}
+
+.userName {
+}
+
+.logoutButton {
+}
+
+.middleConainter {
+  border: solid red 1px;
+  width: 50vw;
+}
+
+.homeContainer {
+}
+
+.homeTitle {
+}
+
+.inputContainer {
+}
+
+.postTweet {
+}
+
+.tweetButton {
+}
+
+.tweetContainer {
+}
+
+.userLogo {
+  color: black;
+}
+
+.texteTweet {
+}
+
+.heartButton {
+}
+
+.deleteButton {
+}
+
+.rightConainter {
+  border: solid red 1px;
+  width: 30vw;
+}
